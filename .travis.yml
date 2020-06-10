@@ -50,7 +50,7 @@ before_script:
     if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
       composer global require "dealerdirect/phpcodesniffer-composer-installer=~0.6.0"
       composer global require "wp-coding-standards/wpcs=~2.3.0"
-      composer global require "phpcompatibility/php-compatibility=^2.1.0"
+      composer global require "phpcompatibility/phpcompatibility-wp=^2.1.0"
     fi
 
 script:
