@@ -29,7 +29,7 @@ env:
     - PHP_FPM_UID: "`id -u`"
     - PHP_FPM_GID: "`id -g`"
     - WP_VERSION: latest
-    - WP_TESTS_DIR: /var/www/
+    - WP_TESTS_DIR: ./
 
 jobs:
   include:
