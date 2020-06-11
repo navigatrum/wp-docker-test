@@ -18,9 +18,9 @@ services:
   wordpress_tests:
     depends_on:
       - db
-    build: /var/www/html
+    build: /tmp
     volumes:
-      - wordpress_files:/var/www/html
+      - wordpress_files:/tmp
     command: ["./bin/install-wp-tests.sh", "wordpress_tests", "wordpress_user", "user_password", "db:3306", "${WP_VERSION}"]
 
   db:
