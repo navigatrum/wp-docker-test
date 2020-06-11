@@ -21,6 +21,7 @@ services:
     volumes:
       - wordpress_files:/var/www/html
     build: .
+    restart: always
 
   db:
     image: mysql:5.7
