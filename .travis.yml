@@ -29,7 +29,6 @@ env:
     - PHP_FPM_UID: "`id -u`"
     - PHP_FPM_GID: "`id -g`"
     - WP_VERSION: 3.8
-    - TMPDIR: /tmp
 
 jobs:
   include:
