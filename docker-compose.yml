@@ -22,6 +22,8 @@ services:
       - wordpress_files:/var/www/html
     build: .
     restart: always
+    stdin_open: true
+    tty: true
 
   db:
     image: mysql:5.7
