@@ -61,7 +61,7 @@ services:
     ports:
       - "3306"
 
-    environment:
+    #environment:
       # MYSQL_ROOT_PASSWORD: password
 
     volumes:
