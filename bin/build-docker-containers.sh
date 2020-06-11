@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+docker-compose run --rm mysql mysql --version
+docker-compose run --rm php php --version
+docker-compose run --rm php php -m
