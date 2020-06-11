@@ -1,19 +1,27 @@
 version: '3.3'
 
 services:
-   wordpress:
-     depends_on:
-       - db
-     image: wordpress:${WP_VERSION}
-     volumes:
-       - wordpress_files:/var/www/html
-     ports:
-       - "80:80"
-     restart: always
-     environment:
-       WORDPRESS_DB_HOST: db:3306
-       WORDPRESS_DB_USER: wordpress
-       WORDPRESS_DB_PASSWORD: my_wordpress_db_password
+  #  wordpress:
+  #    depends_on:
+  #      - db
+  #    image: wordpress:${WP_VERSION}
+  #    volumes:
+  #      - wordpress_files:/var/www/html
+  #    ports:
+  #      - "80:80"
+  #    restart: always
+  #    environment:
+  #      WORDPRESS_DB_HOST: db:3306
+  #      WORDPRESS_DB_USER: wordpress
+  #      WORDPRESS_DB_PASSWORD: my_wordpress_db_password
+
+    wordpress_tests:
+      depends_on:
+        - db
+      build: /var/www/html
+      olumes:
+        - wordpress_files:/var/www/html
+      command: ["./bin/install-wp-tests.sh", "wordpress_tests", "wordpress_user", "user_password", "db:3306", "${WP_VERSION}"]
 
    db:
      image: mysql:5.7
@@ -21,10 +29,10 @@ services:
        - db_data:/var/lib/mysql
      restart: always
      environment:
-       MYSQL_ROOT_PASSWORD: my_db_root_password
-       MYSQL_DATABASE: wordpress
-       MYSQL_USER: wordpress
-       MYSQL_PASSWORD: my_wordpress_db_password
+       MYSQL_ROOT_PASSWORD: root_pawwsord
+       MYSQL_DATABASE: wordpress_tests
+       MYSQL_USER: wordpress_user
+       MYSQL_PASSWORD: user_password
 volumes:
     wordpress_files:
     db_data:
