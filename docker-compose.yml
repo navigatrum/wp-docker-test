@@ -6,7 +6,7 @@ services:
       - db
     image: wordpress:${WP_VERSION}
     volumes:
-      - wordpress_files:${WP_TESTS_DIR-/tmp}
+      - wordpress_files:${TMPDIR-/tmp}
     ports:
       - "80:80"
     restart: always
