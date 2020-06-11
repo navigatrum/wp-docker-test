@@ -19,7 +19,7 @@ services:
       depends_on:
         - db
       build: /var/www/html
-      olumes:
+      volumes:
         - wordpress_files:/var/www/html
       command: ["./bin/install-wp-tests.sh", "wordpress_tests", "wordpress_user", "user_password", "db:3306", "${WP_VERSION}"]
 
