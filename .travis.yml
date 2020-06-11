@@ -28,7 +28,8 @@ env:
     - WP_INSTALL: true
     - PHP_FPM_UID: "`id -u`"
     - PHP_FPM_GID: "`id -g`"
-    - WP_VERSION=latest
+    - WP_VERSION: latest
+    - WP_TESTS_DIR: /var/www/
 
 jobs:
   include:
@@ -58,7 +59,7 @@ before_install:
 
 before_script:
 - bash bin/build-docker-containers.sh
-- docker-compose run --rm bash ./bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
+- docker-compose run --rm mysql ./bin/install-wp-tests.sh wordpress_test root '' mysql:3306 $WP_VERSION
 
 script:
 - docker-compose run --rm phpunit phpunit
