@@ -28,7 +28,7 @@ env:
     - WP_INSTALL: true
     - PHP_FPM_UID: "`id -u`"
     - PHP_FPM_GID: "`id -g`"
-    - WP_VERSION: 3.9
+    - WP_VERSION: 3.8
     - WP_TESTS_DIR: ./
 
 jobs:
