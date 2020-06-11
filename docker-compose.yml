@@ -129,8 +129,8 @@ services:
     environment:
       WP_TESTS_DIR: /var/www/
 
-    script:
-      bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
+    command:
+      - /bin/sh -c "./bin/install-wp-tests.sh wordpress_test root '' localhost ${WP_VERSION}" 
     
     volumes:
       - ./:/var/www
