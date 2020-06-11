@@ -54,8 +54,8 @@ jobs:
   # - env: LOCAL_PHP=8.0-fpm WP_TRAVISCI=test:php
   fast_finish: true
 
-before_install:
-- bash bin/install-docker-compose.sh
+# before_install:
+# - bash bin/install-docker-compose.sh
 
 before_script:
 # - bash bin/build-docker-containers.sh
