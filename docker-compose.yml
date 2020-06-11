@@ -4,7 +4,7 @@ services:
    wordpress:
      depends_on:
        - db
-     image: wordpress:4.5
+     image: wordpress:4.3
      volumes:
        - wordpress_files:/var/www/html
      ports:
