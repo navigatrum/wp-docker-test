@@ -53,7 +53,7 @@ jobs:
   fast_finish: true
 
 before_install:
-- bin/install-docker-compose.sh
+- bash bin/install-docker-compose.sh
 
 before_script:
-- bin/build-docker-containers.sh
+- bash bin/build-docker-containers.sh
