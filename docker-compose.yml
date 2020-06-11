@@ -15,13 +15,13 @@ services:
       WORDPRESS_DB_USER: wp_test_user
       WORDPRESS_DB_PASSWORD: wp_test_password
 
-  wordress_tests:
-    depends_on:
-      - wordpress
-    volumes:
-      - wordpress_files:/var/www/html
-    build: .
-    restart: always
+  # wordress_tests:
+  #   depends_on:
+  #     - wordpress
+  #   volumes:
+  #     - wordpress_files:/var/www/html
+  #   build: .
+  #   restart: always
 
   db:
     image: mysql:5.7
