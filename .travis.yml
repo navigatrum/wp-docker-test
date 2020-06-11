@@ -1,65 +1,59 @@
-sudo: false
-dist: trusty
+os: linux
+dist: xenial
 
-language: php
+language: generic
 
 notifications:
   email:
     on_success: never
     on_failure: change
 
-# branches:
-#   only:
-#     - master
+services:
+  - docker
+
+addons:
+  apt:
+    packages:
+      - docker-ce
 
 cache:
+  apt: true
   directories:
     - $HOME/.composer/cache
 
-matrix:
+env:
+  global:
+    - LOCAL_DIR: build
+    # - COMPOSER_INSTALL: false
+    - WP_INSTALL: true
+    - PHP_FPM_UID: "`id -u`"
+    - PHP_FPM_GID: "`id -g`"
+
+jobs:
   include:
-    - php: 7.2
-      env: WP_VERSION=latest
-    - php: 7.1
-      env: WP_VERSION=latest
-    - php: 7.0
-      env: WP_VERSION=latest
-    - php: 5.6
-      env: WP_VERSION=4.5
-    - php: 5.6
-      env: WP_VERSION=latest
-    - php: 5.6
-      env: WP_VERSION=trunk
-    - php: 5.6
-      env: WP_TRAVISCI=phpcs
+  - env: LOCAL_PHP=7.4-fpm WP_TRAVISCI=test:php
+    name: "PHPUnit Tests: PHP 7.4"
+  - env: LOCAL_PHP=7.3-fpm WP_TRAVISCI=test:php
+    name: "PHPUnit Tests: PHP 7.3"
+  - env: LOCAL_PHP=7.3-fpm LOCAL_PHP_MEMCACHED=true WP_TRAVISCI=test:php
+    name: "PHPUnit Tests: PHP 7.3 with Memcached"
+  - env: LOCAL_PHP=7.2-fpm WP_TRAVISCI=test:php
+    name: "PHPUnit Tests: PHP 7.2"
+  - env: LOCAL_PHP=7.1-fpm WP_TRAVISCI=test:php
+    name: "PHPUnit Tests: PHP 7.1"
+  - env: LOCAL_PHP=7.0-fpm WP_TEST_REPORTER=true WP_TRAVISCI=test:php
+    name: "PHPUnit Tests: PHP 7.0"
+  - env: LOCAL_PHP=5.6-fpm WP_TRAVISCI=test:php
+    name: "PHPUnit Tests: PHP 5.6"
+  - env: LOCAL_PHP=8.0-fpm WP_TRAVISCI=test:php
+    name: "PHPUnit Tests: PHP 8.0"
+  allow_failures:
+  - env: WP_TRAVISCI=test:compat COMPOSER_INSTALL=true NPM_INSTALL=false WP_INSTALL=false
+  - env: LOCAL_PHP=8.0-fpm WP_TRAVISCI=test:php
+  fast_finish: true
+
+before_install:
+- bin/install-docker-compose.sh
 
 before_script:
-  - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - |
-    if [ -f ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini ]; then
-      phpenv config-rm xdebug.ini
-    else
-      echo "xdebug.ini does not exist"
-    fi
-  - |
-    if [[ ! -z "$WP_VERSION" ]] ; then
-      bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
-      composer global require "phpunit/phpunit=^5.7 || ^6.5 || ^7.5"
-    fi
-  - |
-    if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
-      composer global require "dealerdirect/phpcodesniffer-composer-installer=~0.6.0"
-      composer global require "wp-coding-standards/wpcs=~2.3.0"
-      composer global require "phpcompatibility/phpcompatibility-wp=^2.1.0"
-    fi
-
-script:
-  - |
-    if [[ ! -z "$WP_VERSION" ]] ; then
-      phpunit
-      WP_MULTISITE=1 phpunit
-    fi
-  - |
-    if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
-      phpcs
-    fi
+- bin/build-docker-containers.sh
