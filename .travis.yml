@@ -61,7 +61,7 @@ before_script:
 # - bash bin/build-docker-containers.sh
 # - docker-compose run -it --network wpdevnet --rm mysql mysql -hmysql -uroot -p
 # - bash bin/install-wp-tests.sh wordpress_test root '' mysql $WP_VERSION
-- docker-compose up -d
+- docker-compose --verbose up | grep compose.cli.verbose_proxy.proxy_callable | grep path
 
 script:
 # - docker-compose run --rm phpunit phpunit
