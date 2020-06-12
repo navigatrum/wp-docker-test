@@ -68,4 +68,5 @@ before_script:
 
 script:
 # - phpunit
-- docker-compose run --rm phpunit phpunit
+# - docker-compose run --rm phpunit phpunit
+- docker-compose run --rm composer composer global require phpunit/phpunit "^5 || ^6 || ^7"
