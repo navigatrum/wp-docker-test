@@ -13,13 +13,16 @@ RUN chmod +x /tmp/install-wp-tests.sh
 ARG PASSWORD
 ENV PASSWORD=$PASSWORD
 ARG VER
-RUN /tmp/install-wp-tests.sh wordpress_tests root root_password db:3306 $VER
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.7.3/wait /wait
+RUN chmod +x /wait
+CMD /wait && /tmp/install-wp-tests.sh wordpress_tests root root_password db:3306 $VER
 WORKDIR /wordpress
 RUN curl -s https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 # RUN pecl install xdebug
 # RUN docker-php-ext-enable xdebug
 RUN composer require phpunit/phpunit "^7"
+
 # RUN composer install
 COPY . /wordpress
 
