@@ -22,13 +22,13 @@ services:
       - wordpress_files:/var/www/html
     build: .
     restart: always
-    environment:
-      LOCAL_PHP_IMAGE: wordpressdevelop/php:${LOCAL_PHP-latest}
-      DATABASE: wp_test_db
-      USER: wp_test_user
-      PASSWORD: wp_test_password
-      HOST: db:3306
-      VER: ${WP_VERSION}
+    args:
+      - LOCAL_PHP_IMAGE: wordpressdevelop/php:${LOCAL_PHP-latest}
+      - DATABASE: wp_test_db
+      - USER: wp_test_user
+      - PASSWORD: wp_test_password
+      - HOST: db:3306
+      - VER: ${WP_VERSION}
 
   db:
     image: mysql:5.7
