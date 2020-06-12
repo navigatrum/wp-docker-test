@@ -34,7 +34,7 @@ services:
   phpunit:
     image: wordpressdevelop/phpunit:${LOCAL_PHP-latest}
     depends_on:
-      - mysql
+      - db
 
 
   db:
