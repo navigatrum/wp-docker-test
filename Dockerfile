@@ -16,6 +16,7 @@ RUN /tmp/install-wp-tests.sh wordpress_tests root $PASSWORD db $VER true
 WORKDIR /wordpress
 RUN curl -s https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
+RUN docker-php-ext-enable xdebug
 # RUN composer install
 COPY . /wordpress
 
