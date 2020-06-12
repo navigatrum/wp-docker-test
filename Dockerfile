@@ -16,10 +16,7 @@ ARG VER
 # ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.7.3/wait /wait
 # RUN chmod +x /wait
 # CMD /wait && echo "db ready"
-RUN until mysql -u root -proot_password -e ";" ; do \
-    >&2 echo "Can't connect" \
-    sleep 1 \
-    done
+RUN until mysql -u root -proot_password -e ";"; do >&2 echo "Can't connect"; sleep 1; done
 RUN /tmp/install-wp-tests.sh wordpress_tests root root_password db:3306 $VER
 WORKDIR /wordpress
 RUN curl -s https://getcomposer.org/installer | php
