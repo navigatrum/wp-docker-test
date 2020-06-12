@@ -33,7 +33,7 @@ services:
         HOST: db:3306
         VER: ${WP_VERSION}
       environment:
-        WAIT_HOSTS: mysql:3306
+        WAIT_HOSTS: db:3306
     # restart: always
 
   # phpunit:
@@ -61,13 +61,13 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: wordpress_tests
+      MYSQL_USER: wp_test_user
+      MYSQL_PASSWORD: wp_test_password
     ports:
       - '3306:3306'
     expose:
       - '3306'
-      MYSQL_DATABASE: wordpress_tests
-      MYSQL_USER: wp_test_user
-      MYSQL_PASSWORD: wp_test_password
     # healthcheck:
     #   test: "/usr/bin/mysql --user=wp_test_user --password=wp_test_password --execute \"SHOW DATABASES;\""
     #   interval: 3s
