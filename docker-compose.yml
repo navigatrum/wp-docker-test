@@ -2,28 +2,33 @@ version: '3.3'
 
 services:
   wordpress:
-    depends_on:
-      - db
-    image: wordpress:${WP_VERSION}
-    volumes:
-      - wordpress_files:/var/www/html
-    ports:
-      - "80:80"
-    restart: always
-    environment:
-      WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: wp_test_user
-      WORDPRESS_DB_PASSWORD: wp_test_password
+    # depends_on:
+    #   - db
+    # image: wordpress:${WP_VERSION}
+    # volumes:
+    #   - wordpress_files:/var/www/html
+    # ports:
+    #   - "80:80"
+    # restart: always
+    # environment:
+    #   WORDPRESS_DB_HOST: db:3306
+    #   WORDPRESS_DB_USER: wp_test_user
+    #   WORDPRESS_DB_PASSWORD: wp_test_password
 
   wordress_tests:
     depends_on:
-      - wordpress
+      - db
     volumes:
       - wordpress_files:/var/www/html
     build: .
     restart: always
-    stdin_open: true
-    tty: true
+    environment:
+      LOCAL_PHP_IMAGE: wordpressdevelop/php:${LOCAL_PHP-latest}
+      DATABASE: wp_test_db
+      USER: wp_test_user
+      PASSWORD: wp_test_password
+      HOST: db:3306
+      VER: ${WP_VERSION}
 
   db:
     image: mysql:5.7
