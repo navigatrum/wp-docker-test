@@ -14,7 +14,8 @@ ENV PASSWORD=$PASSWORD
 ARG VER
 RUN /tmp/install-wp-tests.sh wordpress_tests root $PASSWORD db $VER true
 WORKDIR /wordpress
-# COPY composer.json /wordpress
+RUN curl -s https://getcomposer.org/installer | php
+RUN mv composer.phar /usr/local/bin/composer
 # RUN composer install
 COPY . /wordpress
 
