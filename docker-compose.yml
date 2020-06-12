@@ -33,7 +33,7 @@ services:
         HOST: db:3306
         VER: ${WP_VERSION}
     environment:
-      WAIT_HOSTS: db:3306
+      WAIT_HOSTS: db:3308
     # restart: always
 
   # phpunit:
