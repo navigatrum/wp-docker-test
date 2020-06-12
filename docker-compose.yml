@@ -15,13 +15,14 @@ services:
     #   WORDPRESS_DB_USER: wp_test_user
     #   WORDPRESS_DB_PASSWORD: wp_test_password
 
-  wordpress_tests:
+  wordpress:
     depends_on:
       - db
     volumes:
-      - wordpress_files:/tmp
-      - ./:/app
-      - ./tmp/wordpress:/var/www/src
+      # - wordpress_files:/tmp
+      # - ./:/app
+      - ./tests:/wordpress/tests
+      - ./src:/wordpress/src
     build:
       context: .
       args:
@@ -33,14 +34,14 @@ services:
         VER: ${WP_VERSION}
     # restart: always
 
-  phpunit:
-    image: wordpressdevelop/phpunit:${LOCAL_PHP-latest}
-    depends_on:
-      - db
-      - wordpress_tests
-    volumes:
-      - wordpress_files:/tmp
-      - ./:/app
+  # phpunit:
+  #   image: wordpressdevelop/phpunit:${LOCAL_PHP-latest}
+  #   depends_on:
+  #     - db
+  #     - wordpress_tests
+  #   volumes:
+  #     - wordpress_files:/tmp
+  #     - ./:/app
 
   # composer:
   #   image: composer:latest

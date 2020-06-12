@@ -68,7 +68,7 @@ before_script:
 
 script:
 # - phpunit
-- docker-compose run --rm phpunit phpunit phpunit.xml.dist
+- docker-compose run --rm wordpress php --version
 # - docker-compose run --rm wordpress_tests php --version
 # - docker-compose run --rm composer composer global require phpunit/phpunit "^5 || ^6 || ^7"
 # - docker-compose run --rm wordpress_tests php --version

@@ -13,6 +13,8 @@ ARG PASSWORD
 ENV PASSWORD=$PASSWORD
 ARG VER
 RUN /tmp/install-wp-tests.sh wordpress_tests root $PASSWORD db $VER true
-COPY /wordpress /var/www/src
-
+WORKDIR /wordpress
+# COPY composer.json /wordpress
+# RUN composer install
+COPY . /wordpress
 
