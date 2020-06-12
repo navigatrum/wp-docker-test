@@ -7,14 +7,7 @@ FROM $LOCAL_PHP_IMAGE
 RUN apt-get update && apt-get install -y --no-install-recommends subversion
 COPY ./bin/install-wp-tests.sh /var/www/html/install-wp-tests.sh
 RUN chmod +x /var/www/html/install-wp-tests.sh
-ARG DATABASE
-ENV DATABASE=$DATABASE
-ARG USER
-ENV USER=$USER
 ARG PASSWORD
 ENV PASSWORD=$PASSWORD
-ARG HOST
-ENV HOST=$HOST
 ARG VER
-ENV VER=$VER
-RUN /var/www/html/install-wp-tests.sh $DATABASE $USER $PASSWORD $HOST $VER
+RUN /var/www/html/install-wp-tests.sh wordpress_tests root $PASSWORD db $VER

@@ -24,14 +24,11 @@ services:
       context: .
       args:
         LOCAL_PHP_IMAGE: wordpressdevelop/php:${LOCAL_PHP-latest}
-        DATABASE: wp_test_db
-        USER: wp_test_user
-        PASSWORD: wp_test_password
-        HOST: db:3306
+        PASSWORD: root_password
         VER: ${WP_VERSION}
     restart: always
 
-
+# https://github.com/Soluto/wordpress-plugin-tests-template/blob/master/docker-compose.yml
   db:
     image: mysql:5.7
     volumes:
@@ -39,9 +36,9 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root_pawwsord
-      MYSQL_DATABASE: wp_test_db
-      MYSQL_USER: wp_test_user
-      MYSQL_PASSWORD: wp_test_password
+      # MYSQL_DATABASE: wp_test_db
+      # MYSQL_USER: wp_test_user
+      # MYSQL_PASSWORD: wp_test_password
 volumes:
     wordpress_files:
     db_data:
