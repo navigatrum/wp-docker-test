@@ -48,7 +48,7 @@ services:
     volumes:
       - wordpress_files:/tmp
       - ./:app
-    restart: no
+    # restart: no
 
   db:
     image: mysql:5.7
