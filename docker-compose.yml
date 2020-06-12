@@ -21,7 +21,7 @@ services:
     volumes:
       - wordpress_files:/tmp
       - ./:/app
-      - ./tmp/wordpress:/srv/www
+      - ./tmp/wordpress:/var/www/src
     build:
       context: .
       args:
