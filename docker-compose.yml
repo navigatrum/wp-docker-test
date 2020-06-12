@@ -15,7 +15,7 @@ services:
     #   WORDPRESS_DB_USER: wp_test_user
     #   WORDPRESS_DB_PASSWORD: wp_test_password
 
-  wordress_tests:
+  wordpress_tests:
     depends_on:
       - db
     volumes:
@@ -39,7 +39,7 @@ services:
   composer:
     image: composer:latest
     depends_on:
-      - wordress_tests
+      - wordpress_tests
     volumes:
       - wordpress_files:/tmp
 
