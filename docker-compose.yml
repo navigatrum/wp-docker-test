@@ -58,10 +58,10 @@ services:
       - db_data:/var/lib/mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root_pawwsord
-      MYSQL_DATABASE: wordpress_tests
-      MYSQL_USER: wp_test_user
-      MYSQL_PASSWORD: wp_test_password
+      MYSQL_ROOT_PASSWORD: root_password
+      # MYSQL_DATABASE: wordpress_tests
+      # MYSQL_USER: wp_test_user
+      # MYSQL_PASSWORD: wp_test_password
     # healthcheck:
     #   test: "/usr/bin/mysql --user=wp_test_user --password=wp_test_password --execute \"SHOW DATABASES;\""
     #   interval: 3s

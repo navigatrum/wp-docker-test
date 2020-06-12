@@ -147,7 +147,14 @@ install_db() {
 	fi
 
 	# create database
-	mysqladmin create $DB_NAME --user="$DB_USER" --password="$DB_PASS"$EXTRA
+	PASSWORD="${DB_PASS}${EXTRA}"
+	MYSQL=`which mysql`
+	CREATE_Q="CREATE DATABASE IF NOT EXISTS $DB_NAME;"
+	GRANT_Q="GRANT ALL ON *.* TO '$DB_USER'@'localhost' IDENTIFIED BY '$PASSWORD';"
+	FLUSH_Q="FLUSH PRIVILEGES;"
+	SQL="${CREATE_Q}${GRANT_Q}${FLUSH_Q}"
+	$MYSQL -u"$DB_USER" -p"$PASSWORD" -e "$SQL"
+	# mysqladmin create $DB_NAME --user="$DB_USER" --password="$DB_PASS"$EXTRA
 }
 
 install_wp
