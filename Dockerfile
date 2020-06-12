@@ -2,6 +2,7 @@
 # WORKDIR /var/www/html
 # COPY ./bin/install-wp-tests.sh /var/www/html/install-wp-tests.sh
 # RUN /var/www/html/install-wp-tests.sh wordpress_test wp_test_user wp_test_password db:3306 4.2
+
 ARG LOCAL_PHP_IMAGE
 FROM $LOCAL_PHP_IMAGE
 RUN apt-get update && apt-get install -y --no-install-recommends subversion
@@ -10,4 +11,6 @@ RUN chmod +x /var/www/html/install-wp-tests.sh
 ARG PASSWORD
 ENV PASSWORD=$PASSWORD
 ARG VER
-RUN /var/www/html/install-wp-tests.sh wordpress_tests root $PASSWORD db $VER
+RUN /var/www/html/install-wp-tests.sh wordpress_tests root $PASSWORD db $VER true
+
+
