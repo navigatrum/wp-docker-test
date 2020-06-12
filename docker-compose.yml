@@ -47,7 +47,7 @@ services:
       - wordpress_tests
     volumes:
       - wordpress_files:/tmp
-      - ./:app
+      - ./:/app
     # restart: no
 
   db:
