@@ -20,6 +20,7 @@ services:
       - db
     volumes:
       - wordpress_files:/tmp
+      - ./:app
     build:
       context: .
       args:
@@ -31,17 +32,23 @@ services:
         VER: ${WP_VERSION}
     # restart: always
 
-  phpunit:
-    image: wordpressdevelop/phpunit:${LOCAL_PHP-latest}
-    depends_on:
-      - db
+    phpunit:
+      image: wordpressdevelop/phpunit:${LOCAL_PHP-latest}
+      depends_on:
+        - db
+        - wordpress_tests
+      volumes:
+        - wordpress_files:/tmp
+        - ./:app
 
-  composer:
-    image: composer:latest
-    depends_on:
-      - wordpress_tests
-    volumes:
-      - wordpress_files:/tmp
+  # composer:
+  #   image: composer:latest
+  #   depends_on:
+  #     - wordpress_tests
+  #   volumes:
+  #     - wordpress_files:/tmp
+  #     - ./:app
+  #   restart: no
 
   db:
     image: mysql:5.7
@@ -53,6 +60,7 @@ services:
       MYSQL_DATABASE: wp_test_db
       MYSQL_USER: wp_test_user
       MYSQL_PASSWORD: wp_test_password
+
 volumes:
     wordpress_files:
     db_data:
