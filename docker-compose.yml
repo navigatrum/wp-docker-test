@@ -22,7 +22,7 @@ services:
       - wordpress_files:/var/www/html
     build: .
     restart: always
-    args:
+    environment:
       LOCAL_PHP_IMAGE: wordpressdevelop/php:${LOCAL_PHP-latest}
       DATABASE: wp_test_db
       USER: wp_test_user
