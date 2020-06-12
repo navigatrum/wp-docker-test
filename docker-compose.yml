@@ -32,14 +32,14 @@ services:
         VER: ${WP_VERSION}
     # restart: always
 
-    phpunit:
-      image: wordpressdevelop/phpunit:${LOCAL_PHP-latest}
-      depends_on:
-        - db
-        - wordpress_tests
-      volumes:
-        - wordpress_files:/tmp
-        - ./:app
+  phpunit:
+    image: wordpressdevelop/phpunit:${LOCAL_PHP-latest}
+    depends_on:
+      - db
+      - wordpress_tests
+    volumes:
+      - wordpress_files:/tmp
+      - ./:app
 
   # composer:
   #   image: composer:latest
