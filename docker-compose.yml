@@ -17,7 +17,7 @@ services:
 
   wordpress:
     depends_on:
-      db:
+      - db:
         condition: service_healthy
     volumes:
       # - wordpress_files:/tmp
