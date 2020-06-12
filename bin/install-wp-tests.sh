@@ -154,6 +154,7 @@ install_db() {
 	FLUSH_Q="FLUSH PRIVILEGES;"
 	SQL="${CREATE_Q}${GRANT_Q}${FLUSH_Q}"
 	$MYSQL -u"$DB_USER" -p"$PASSWORD" -e "$SQL"
+	echo "Wordpress Test DB created"
 	# mysqladmin create $DB_NAME --user="$DB_USER" --password="$DB_PASS"$EXTRA
 }
 

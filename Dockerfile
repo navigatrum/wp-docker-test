@@ -15,7 +15,8 @@ ENV PASSWORD=$PASSWORD
 ARG VER
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.7.3/wait /wait
 RUN chmod +x /wait
-CMD /wait && /tmp/install-wp-tests.sh wordpress_tests root root_password db:3306 $VER
+CMD /wait && echo "db ready"
+RUN /tmp/install-wp-tests.sh wordpress_tests root root_password db:3306 $VER
 WORKDIR /wordpress
 RUN curl -s https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
