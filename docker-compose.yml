@@ -20,7 +20,7 @@ services:
       - db
     volumes:
       - wordpress_files:/tmp
-      - ./:app
+      - ./:/app
     build:
       context: .
       args:
@@ -39,7 +39,7 @@ services:
       - wordpress_tests
     volumes:
       - wordpress_files:/tmp
-      - ./:app
+      - ./:/app
 
   # composer:
   #   image: composer:latest
