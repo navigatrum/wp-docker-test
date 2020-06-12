@@ -6,8 +6,9 @@
 ARG LOCAL_PHP_IMAGE
 FROM $LOCAL_PHP_IMAGE
 RUN apt-get update && apt-get install -y --no-install-recommends subversion
-COPY ./bin/install-wp-tests.sh /app/install-wp-tests.sh
-RUN chmod +x /app/install-wp-tests.sh
+WORKDIR /tmp
+COPY ./bin/install-wp-tests.sh /tmp/install-wp-tests.sh
+RUN chmod +x /tmp/install-wp-tests.sh
 ARG PASSWORD
 ENV PASSWORD=$PASSWORD
 ARG VER
