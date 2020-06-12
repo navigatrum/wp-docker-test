@@ -4,7 +4,8 @@
 # RUN /var/www/html/install-wp-tests.sh wordpress_test wp_test_user wp_test_password db:3306 4.2
 # https://github.com/Soluto/wordpress-plugin-tests-template/blob/master/Dockerfile
 ARG LOCAL_PHP_IMAGE
-FROM $LOCAL_PHP_IMAGE
+# FROM $LOCAL_PHP_IMAGE
+FROM php:7.4-cli
 RUN apt-get update && apt-get install -y --no-install-recommends subversion
 WORKDIR /tmp
 COPY ./bin/install-wp-tests.sh /tmp/install-wp-tests.sh
@@ -16,6 +17,7 @@ RUN /tmp/install-wp-tests.sh wordpress_tests root $PASSWORD db $VER true
 WORKDIR /wordpress
 RUN curl -s https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
+RUN pecl install xdebug-2.7.2
 RUN docker-php-ext-enable xdebug
 # RUN composer install
 COPY . /wordpress
