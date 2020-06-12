@@ -13,7 +13,7 @@ RUN chmod +x /tmp/install-wp-tests.sh
 ARG PASSWORD
 ENV PASSWORD=$PASSWORD
 ARG VER
-RUN /tmp/install-wp-tests.sh wordpress_tests root $PASSWORD db $VER true
+RUN /tmp/install-wp-tests.sh wordpress_tests wp_test_user $PASSWORD db $VER true
 WORKDIR /wordpress
 RUN curl -s https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer

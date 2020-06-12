@@ -17,8 +17,7 @@ services:
 
   wordpress:
     depends_on:
-      - db:
-        condition: service_healthy
+      - db
     volumes:
       # - wordpress_files:/tmp
       # - ./:/app
@@ -28,7 +27,7 @@ services:
       context: .
       args:
         LOCAL_PHP_IMAGE: wordpressdevelop/php:${LOCAL_PHP-latest}
-        DATABASE: wp_test_db
+        DATABASE: wordpress_tests
         USER: wp_test_user
         PASSWORD: wp_test_password
         HOST: db:3306
@@ -60,14 +59,14 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root_pawwsord
-      MYSQL_DATABASE: wp_test_db
+      MYSQL_DATABASE: wordpress_tests
       MYSQL_USER: wp_test_user
       MYSQL_PASSWORD: wp_test_password
-    healthcheck:
-      test: "/usr/bin/mysql --user=wp_test_user --password=wp_test_password --execute \"SHOW DATABASES;\""
-      interval: 3s
-      timeout: 1s
-      retries: 5
+    # healthcheck:
+    #   test: "/usr/bin/mysql --user=wp_test_user --password=wp_test_password --execute \"SHOW DATABASES;\""
+    #   interval: 3s
+    #   timeout: 1s
+    #   retries: 5
 
 volumes:
     wordpress_files:
