@@ -23,7 +23,8 @@ services:
     build:
       context: .
       args:
-        LOCAL_PHP_IMAGE: wordpressdevelop/php:${LOCAL_PHP-latest}
+        # LOCAL_PHP_IMAGE: wordpressdevelop/php:${LOCAL_PHP-latest}
+        LOCAL_PHP_IMAGE: 7.3-alpine
         PASSWORD: root_password
         VER: ${WP_VERSION}
     restart: always
