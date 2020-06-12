@@ -69,8 +69,7 @@ before_script:
 script:
 # - phpunit
 # - docker-compose run --rm wordpress_tests -w /app vendor/bin/phpunit phpunit.xml.dist
-- docker-compose run --rm worpdress_tests php -r 'echo getcwd() . "\n";'
-- docker-compose run --rm wordpress_tests bash ll -la
+- docker-compose run --rm wordpress_tests php --version
 # - docker-compose run --rm composer composer global require phpunit/phpunit "^5 || ^6 || ^7"
 # - docker-compose run --rm wordpress_tests php --version
 # - docker-compose run --rm composer composer config --list --global
