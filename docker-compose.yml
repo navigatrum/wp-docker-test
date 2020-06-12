@@ -64,3 +64,4 @@ services:
 volumes:
     wordpress_files:
     db_data:
+    
