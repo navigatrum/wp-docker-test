@@ -32,6 +32,8 @@ services:
         PASSWORD: wp_test_password
         HOST: db:3306
         VER: ${WP_VERSION}
+    networks:
+      - nettest
     # restart: always
 
   # phpunit:
@@ -64,8 +66,8 @@ services:
       MYSQL_PASSWORD: wp_test_password
     ports:
       - '3306:3306'
-    expose:
-      - '3306'
+    networks:
+      - nettest
     # healthcheck:
     #   test: "/usr/bin/mysql --user=wp_test_user --password=wp_test_password --execute \"SHOW DATABASES;\""
     #   interval: 3s
@@ -75,4 +77,7 @@ services:
 volumes:
     wordpress_files:
     db_data:
+
+networks:
+  nettest
     
