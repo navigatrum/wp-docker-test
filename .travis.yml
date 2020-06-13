@@ -60,13 +60,13 @@ jobs:
 # - bash bin/install-docker-compose.sh
 
 before_script:
-- docker-compose up
-- docker-compose run web php --version
-- docker-compose run db mysql --version
+# - docker-compose up
+- docker-compose run --rm web php --version
+- docker-compose run --rm db mysql --version
 # - docker-compose run db mysql -u db_user -pdb_password 
 
 script:
-- docker-compose run web php -f ./php/index.php
+- docker-compose run --rm web php -f ./php/index.php
 # - phpunit
 # - docker-compose run --rm wordpress composer --version
 # - docker-compose run --rm wordpress php --version
