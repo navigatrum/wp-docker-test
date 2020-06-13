@@ -7,7 +7,7 @@ ARG LOCAL_PHP_IMAGE
 FROM $LOCAL_PHP_IMAGE
 # FROM ubuntu:16.04
 # FROM php:7.4-cli
-RUN apt-get update && apt-get install -y --no-install-recommends subversion mysqli
+RUN apt-get update && apt-get install -y --no-install-recommends subversion
 WORKDIR /tmp
 COPY ./bin/install-wp-tests.sh /tmp/install-wp-tests.sh
 RUN chmod +x /tmp/install-wp-tests.sh
@@ -18,6 +18,7 @@ ARG VER
 # RUN chmod +x /wait
 # CMD /wait && echo "db ready"
 # RUN until mysql -u root -proot_password -e ";"; do >&2 echo "Can't connect"; sleep 1; done
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 RUN /tmp/install-wp-tests.sh wordpress_tests wp_test_user wp_test_password db:3306 $VER true
 WORKDIR /wordpress
 RUN curl -s https://getcomposer.org/installer | php
