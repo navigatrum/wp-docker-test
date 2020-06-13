@@ -60,19 +60,18 @@ jobs:
 # - bash bin/install-docker-compose.sh
 
 before_script:
-# - bash bin/build-docker-containers.sh
-# - docker-compose run -it --network wpdevnet --rm mysql mysql -hmysql -uroot -p
-# - bash bin/install-wp-tests.sh wordpress_test root '' mysql $WP_VERSION
-# - chmod +x bin/install-wp-tests.sh
- - docker-compose up -d --build
-# - bash bin/install-wp-tests.sh wp_test_db wp_test_user wp_test_password db:3306 $WP_VERSION
+- docker-compose up
+- docker-compose run web php --version
+- docker-compose run db mysql --version
+# - docker-compose run db mysql -u db_user -pdb_password 
 
 script:
+- docker-compose run web php -f ./php/index.php
 # - phpunit
 # - docker-compose run --rm wordpress composer --version
 # - docker-compose run --rm wordpress php --version
-- docker-compose run db mysql --version
-- docker-compose run wordpress vendor/bin/phpunit
+# - docker-compose run db mysql --version
+# - docker-compose run wordpress vendor/bin/phpunit
 # - docker-compose run --rm wordpress_tests php --version
 # - docker-compose run --rm composer composer global require phpunit/phpunit "^5 || ^6 || ^7"
 # - docker-compose run --rm wordpress_tests php --version
