@@ -65,11 +65,11 @@ services:
       MYSQL_USER: wp_test_user
       MYSQL_PASSWORD: wp_test_password
     healthcheck:
-      test: ["CMD", "mysql", "--user=wp_test_user, "--password=wp_test_password", "-e", "'SHOW DATABASES;'"]
+      test: ["CMD", "mysql", "--user=wp_test_user", "--password=wp_test_password", "-e", "'SHOW DATABASES;'"]
       interval: 1m30s
       timeout: 10s
       retries: 3
-      start_period: 40s
+      # start_period: 40s
       
     # ports:
     #   - '3306:3306'
