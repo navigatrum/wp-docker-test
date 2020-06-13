@@ -10,6 +10,8 @@ services:
       MYSQL_PASSWORD: db_password
     ports:
       - "9906:3306"
+    restart: always
+
   web:
     image: php:7.2.2-apache
     container_name: php_web
@@ -19,5 +21,5 @@ services:
       - ./php/:/var/www/html/
     ports:
       - "8100:80"
-    stdin_open: true
-    tty: true
+    # stdin_open: true
+    # tty: true
