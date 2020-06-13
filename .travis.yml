@@ -30,7 +30,7 @@ env:
     - WP_INSTALL: true
     - PHP_FPM_UID: "`id -u`"
     - PHP_FPM_GID: "`id -g`"
-    - WP_VERSION: 4.2
+    - WP_VERSION: latest
     - LOCAL_PHP_XDEBUG: true
 
 jobs:
