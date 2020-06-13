@@ -68,11 +68,12 @@ services:
       - '3306:3306'
     networks:
       - nettest
-    # healthcheck:
-    #   test: "/usr/bin/mysql --user=wp_test_user --password=wp_test_password --execute \"SHOW DATABASES;\""
-    #   interval: 3s
-    #   timeout: 1s
-    #   retries: 5
+    container_name: mydbcont
+    # networks:
+    #   nettest:
+    #     aliases:
+    #       - mydbcont 
+
 
 volumes:
     wordpress_files:
