@@ -81,4 +81,5 @@ volumes:
 
 networks:
   nettest:
+    external: true
     
