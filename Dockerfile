@@ -18,7 +18,7 @@ ARG VER
 # RUN chmod +x /wait
 # CMD /wait && echo "db ready"
 # RUN until mysql -u root -proot_password -e ";"; do >&2 echo "Can't connect"; sleep 1; done
-RUN /tmp/install-wp-tests.sh wordpress_tests wp_test_user wp_test_password db:3306 $VER
+RUN /tmp/install-wp-tests.sh wordpress_tests wp_test_user wp_test_password db:3306 $VER true
 WORKDIR /wordpress
 RUN curl -s https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
