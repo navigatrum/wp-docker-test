@@ -6,7 +6,7 @@
 ARG LOCAL_PHP_IMAGE
 FROM $LOCAL_PHP_IMAGE
 # FROM php:7.4-cli
-RUN apt-get update && apt-get install -y --no-install-recommends subversion
+RUN apt-get update && apt-get install -y --no-install-recommends subversion mysql-client
 WORKDIR /tmp
 COPY ./bin/install-wp-tests.sh /tmp/install-wp-tests.sh
 RUN chmod +x /tmp/install-wp-tests.sh
@@ -16,8 +16,8 @@ ARG VER
 # ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.7.3/wait /wait
 # RUN chmod +x /wait
 # CMD /wait && echo "db ready"
-# RUN until mysql -u root -proot_password -e ";"; do >&2 echo "Can't connect"; sleep 1; done
-RUN /tmp/install-wp-tests.sh wordpress_tests wp_test_user wp_test_password db:3306 $VER true
+RUN until mysql -u root -proot_password -e ";"; do >&2 echo "Can't connect"; sleep 1; done
+RUN /tmp/install-wp-tests.sh wordpress_tests wp_test_user wp_test_password db:3306 $VER
 WORKDIR /wordpress
 RUN curl -s https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
