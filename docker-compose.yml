@@ -79,5 +79,5 @@ volumes:
     db_data:
 
 networks:
-  nettest
+  nettest:
     
