@@ -3,8 +3,9 @@
 # COPY ./bin/install-wp-tests.sh /var/www/html/install-wp-tests.sh
 # RUN /var/www/html/install-wp-tests.sh wordpress_test wp_test_user wp_test_password db:3306 4.2
 # https://github.com/Soluto/wordpress-plugin-tests-template/blob/master/Dockerfile
-ARG LOCAL_PHP_IMAGE
-FROM $LOCAL_PHP_IMAGE
+# ARG LOCAL_PHP_IMAGE
+# FROM $LOCAL_PHP_IMAGE
+FROM ubuntu:16.04
 # FROM php:7.4-cli
 RUN apt-get update && apt-get install -y --no-install-recommends subversion mysql-client
 WORKDIR /tmp
