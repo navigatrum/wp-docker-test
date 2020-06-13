@@ -66,7 +66,7 @@ before_script:
 # - docker-compose run db mysql -u db_user -pdb_password 
 
 script:
-- docker-compose run --rm web php -f ./php/index.php
+- docker-compose run --rm web php -f test.php
 # - phpunit
 # - docker-compose run --rm wordpress composer --version
 # - docker-compose run --rm wordpress php --version
