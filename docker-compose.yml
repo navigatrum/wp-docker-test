@@ -65,7 +65,7 @@ services:
       MYSQL_USER: wp_test_user
       MYSQL_PASSWORD: wp_test_password
     healthcheck:
-      test: ["CMD", "mysql", "--user=wp_test_user", "--password=wp_test_password", "-e", "'SHOW DATABASES;'"]
+      test: ["CMD", "mysql", "--user=$$MYSQL_USER", "--password=$$MYSQL_PASSWORD", "-e", "'SHOW DATABASES;'"]
       interval: 1m30s
       timeout: 10s
       retries: 3

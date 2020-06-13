@@ -7,7 +7,7 @@ ARG LOCAL_PHP_IMAGE
 FROM $LOCAL_PHP_IMAGE
 # FROM ubuntu:16.04
 # FROM php:7.4-cli
-RUN apt-get update && apt-get install -y --no-install-recommends subversion
+RUN apt-get update && apt-get install -y --no-install-recommends subversion mysqli
 WORKDIR /tmp
 COPY ./bin/install-wp-tests.sh /tmp/install-wp-tests.sh
 RUN chmod +x /tmp/install-wp-tests.sh
