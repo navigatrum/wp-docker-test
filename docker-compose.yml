@@ -70,9 +70,8 @@ services:
       timeout: 10s
       retries: 3
       # start_period: 40s
-      
-    # ports:
-    #   - '3306:3306'
+    ports:
+      - '3306:3306'
     # networks:
     #   - nettest
     # container_name: mydbcont
