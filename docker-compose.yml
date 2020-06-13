@@ -65,7 +65,7 @@ services:
       MYSQL_USER: wp_test_user
       MYSQL_PASSWORD: wp_test_password
     healthcheck:
-      test: ["CMD", "mysql", "--user=${self:services.mysql.environment.MYSQL_USER}", "--password=${self:services.mysql.environment.MYSQL_PASSWORD}", "-e", "'SHOW DATABASES;'"]
+      test: ["CMD", "mysql", "--user=${self:services.db.environment.MYSQL_USER}", "--password=${self:services.db.environment.MYSQL_PASSWORD}", "-e", "'SHOW DATABASES;'"]
       interval: 1m30s
       timeout: 10s
       retries: 3
